@@ -1,0 +1,90 @@
+/* CSS Task Maneger - 2017, Mateus Lins Aceto*/
+
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+  }
+
+main {
+	flex: 1 0 auto;
+}
+
+footer{
+	min-height: 70px;
+}
+
+
+.logo-type{
+	width: 70px;
+	height: auto;
+}
+
+
+
+.user-photo-type{
+	width: 80px;
+	height: 80px;
+}
+
+.user-photo-nav-type{
+	width: 110px !important;
+	height: 110px !important;
+}
+
+.user-background{
+	width:100%;
+
+}
+
+.mobilebtn{
+	margin-top: 7px !important;
+}
+
+@media only screen and (max-width: 365px) {
+    .mobilebtn{
+		width:100%;
+	}
+
+}
+
+.card .card-content {
+    padding-left: 7px;
+	padding-right: 7px;
+}
+.card-panel {
+    padding-left: 2px;
+	padding-right: 2px;
+}
+.user-img {
+    display: block;
+    margin: 0 auto;
+	width:100%;
+	height: auto;
+	max-width:200px;
+}
+
+.btnMax{
+	width: 100% !important;
+}
+
+.loginCard{
+	display: block;
+    margin: 0 auto;
+	width:100%;
+	height: auto;
+	max-width:500px;
+	margin-top: 7px
+}
+.iris{
+   background-image: url('../img/wallpaper.jpg');
+    background-repeat: no-repeat; 
+	height:500px;	
+    background-size: cover;
+      
+
+}
+
+
+
+

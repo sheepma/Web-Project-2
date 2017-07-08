@@ -1,0 +1,708 @@
+
+<template name="main">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">  
+    {{> yield}}
+    {{> footer1}}
+</template>
+<template name = "index">
+    <header>
+        <!-- Componente do Menu, tanto do normal como do Mobile....-->
+        <div class="navbar-fixed">
+            <nav>
+                <div class="nav-wrapper  red lighten-1">
+                    <a href="#!" class="brand-logo"><img src="img/logo.png" class="logo-type"></a>
+                    <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+                    <ul class="right hide-on-med-and-down">
+                        <li class="active"><a href="/">Home</a></li>
+                        <li><a href="/newCard">Novo Card</a></li>
+                        <li><a href="/about">Sobre</a></li>
+                        {{#if currentUser}}
+						<li>
+                            <a href="#modal1" class="waves-effect waves-light btn-floating user-photo-type" id="user"><img src="img/user.jpg" class="user-photo-type"></a>
+                        </li>
+						{{else}}
+						  <li><a href="{{pathFor route='login'}}">Login</a></li>
+						{{/if}}  
+                    </ul>
+                    <ul class="side-nav" id="mobile-demo">                           
+						<li>
+                        	<div class="userView">
+                                <div class="background">
+                                    <img src="img/wallpaper.jpg" class="user-background">
+                                </div>
+                                <a href="#!user"><img class="circle user-photo-nav-type" src="img/user.jpg"></a>
+                                <a href="#!name"><span class="white-text name">Nicolas Gandalf</span></a>
+                                <a href="#!email"><span class="white-text email">nicolas_gandalf@gmail.com</span></a>
+                            </div>
+                        </li>	
+                        <li class="active"><a href="/" class="waves-effect waves-yellow">Home</a></li>
+                        <li><a href="/newCard" class="waves-effect waves-yellow">Novo Card</a></li>
+                        <li><a href="/about" class="waves-effect waves-yellow">Sobre</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        <!-- Modal Structure -->
+        <div id="modal1" class="modal">
+            <div class="modal-content">
+                <h4>Bem vindo  {{#each teste}}
+    {{name}}<br>
+  {{/each}}</h4>
+                <p>nicolas_gandalf@gmail.com</p>
+                <div class="chip">
+                    Você tem novas tarefas para hoje
+                    <i class="close material-icons">close</i>
+                </div>
+                <div class="chip">
+                    Você tem novas mensagens
+                    <i class="close material-icons">close</i>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <a href="#!" class="modal-action modal-close waves-effect waves-yellow btn-flat">Fechar</a>
+                <a href="#!" class="waves-effect waves-yellow btn yellow darken-2">Perfil</a>
+				<a href="#!" class="waves-effect waves-yellow btn yellow darken-2" id="logoutBtn">Logout</a>
+            </div>
+        </div>
+        <!-- Tap Target Structure -->
+        <div class="tap-target yellow darken-2" data-activates="user">
+            <div class="tap-target-content">
+                <h5>Você tem <span class="new badge red darken-3">4</span> novas notificações!</h5>
+                <p>Click na foto do seu usuário para abri-las</p>
+            </div>
+        </div>
+    </header>
+    <main>
+        <div class="fixed-action-btn horizontal">
+            <a class="btn-floating btn-large waves-effect waves-light yellow darken-2" href="/newCard"><i class="material-icons">add</i></a>
+        </div>
+        <div class="row" style="margin-top: 20px">
+            <div class="col s12 m12">
+                <div class="chips chips-initial" id = "cardFilterForm"><i class="material-icons">add</i></div>
+            </div>
+        </div>
+        <div class="row grid" id="cardGrid">
+            <div class="col s12 m4 grid-item" id="Matemáticaclose">
+                <div class="card">
+                    <div class="card-image waves-effect waves-block waves-light">
+                        <img src="img/wallpaper2.jpg" >
+                    </div>
+                    <div class="card-content">
+                        <span class="card-title activator grey-text text-darken-4">Equações matemáticas<i class="material-icons right">more_vert</i></span>
+                        <p><a href="#" class ="waves-effect btn-floating red lighten-1"><i class="material-icons left">edit</i>Editar Card</a></p>
+                    </div>
+                    <div class="card-reveal">
+                        <span class="card-title grey-text text-darken-4">Equações matemáticas<i class="material-icons right">close</i></span>
+                        <p>É a condição pela qual estes 2 termos apresentam o mesmo ou igual resultado, para tal, deve-se encontrar o valor de X que torne essa igualdade possível.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col s12 m4 grid-item" id="Físicaclose">
+                <div class="card">
+                    <div class="card-image waves-effect waves-block waves-light">
+                        <img src="img/fluids.jpg" >
+                    </div>
+                    <div class="card-content">
+                        <span class="card-title activator grey-text text-darken-4">Física dos fluidos<i class="material-icons right">more_vert</i></span>
+                        <p><a href="#" class ="waves-effect btn-floating red lighten-1"><i class="material-icons left">edit</i>Editar Card</a></p>
+                    </div>
+                    <div class="card-reveal">
+                        <span class="card-title grey-text text-darken-4">Física dos fluidos<i class="material-icons right">close</i></span>
+                        <p>A física dos fluídos é um ramo da ciência que estuda as propriedades dos fluídos, os seus fenômenos e as leis que os regem. Dentre os diversos tópicos de interesse, pode-se destacar os estudos de fundamentos tais como os fluídos mudam de fase; como as partículas e as bolhas de gás suspensas em um fluído interagem com a mudança das suas propriedades; como os fluídos interagem com as interfaces sólidas; como é a influência da energia como, por exemplo, a térmica ou a elétrica, no movimento dos fluídos.
+                            Um fluído pode ser definido como uma substância que se deforma continuamente sob a aplicação de uma  força ou tensão de cisalhamento, isto é, tangencial. Conforme o estado físico da matéria, os fluídos, basicamente, compreendem as fases líquida e gasosa.
+                            Um líquido possui forças intermoleculares que mantêm as moléculas unidas de modo a formar um volume, mas não uma forma definida. Quando um líquido é colocado em um recipiente ocupará o volume correspondente ao espaço compreendido pelas paredes do recipiente e a superfície do líquido, independentemente da forma do recipiente. Por outro lado, o gás consiste de moléculas em movimento que colidem entre si, tendendo a dispersar-se de forma a não ter volume ou forma definidos. Um gás preencherá todo o espaço do recipiente em que for colocado.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col s12 m4 grid-item" id = "Quimícaclose">
+                <div class="card">
+                    <div class="card-image waves-effect waves-block waves-light">
+                        <img src="img/quimOrg.jpg" >
+                    </div>
+                    <div class="card-content">
+                        <span class="card-title activator grey-text text-darken-4">Química Orgânica<i class="material-icons right">more_vert</i></span>
+                        <p><a href="#" class ="waves-effect btn-floating red lighten-1"><i class="material-icons left">edit</i>Editar Card</a></p>
+                    </div>
+                    <div class="card-reveal">
+                        <span class="card-title grey-text text-darken-4">Química Orgânica<i class="material-icons right">close</i></span>
+                        <p>A Química Orgânica é uma divisão da Química que foi proposta em 1777 pelo químico sueco Torbern Olof Bergman. A química orgânica era definida como um ramo químico que estuda os compostos extraídos dos organismos vivos. Em 1807, foi formulada a Teoria da Força Vital por Jöns Jacob Berzelius. Ela baseava-se na ideia de que os compostos orgânicos precisavam de uma força maior (a vida) para serem sintetizados.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col s12 m4 grid-item" id = "Matemáticaclose">
+                <div class="card">
+                    <div class="card-image waves-effect waves-block waves-light">
+                        <img src="img/integrais.jpg" >
+                    </div>
+                    <div class="card-content">
+                        <span class="card-title activator grey-text text-darken-4">Integrais<i class="material-icons right">more_vert</i></span>
+                        <p><a href="#" class ="waves-effect btn-floating red lighten-1"><i class="material-icons left">edit</i>Editar Card</a></p>
+                    </div>
+                    <div class="card-reveal">
+                        <span class="card-title grey-text text-darken-4">Integrais<i class="material-icons right">close</i></span>
+                        <p>Da mesma forma que a adição e a  subtração, a multiplicação e a divisão, a operação inversa da derivação é a antiderivação ou integração indefinida.
+                            Dada uma função g(x), qualquer função f'(x) tal que f'(x) = g(x) é chamada integral indefinida ou antiderivada de f(x).
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col s12 m4 grid-item" id = "Biologiaclose">
+                <div class="card">
+                    <div class="card-image waves-effect waves-block waves-light">
+                        <img src="img/divisao-celular.jpg" >
+                    </div>
+                    <div class="card-content">
+                        <span class="card-title activator grey-text text-darken-4">Divisão celular<i class="material-icons right">more_vert</i></span>
+                        <p><a href="#" class ="waves-effect btn-floating red lighten-1"><i class="material-icons left">edit</i>Editar Card</a></p>
+                    </div>
+                    <div class="card-reveal">
+                        <span class="card-title grey-text text-darken-4">Divisão celular<i class="material-icons right">close</i></span>
+                        <p>Os cromossomos são responsáveis pela transmissão dos caracteres hereditários, ou seja, dos caracteres que são transmitidos de pais para filhos. Os tipos de cromossomos, assim como o número deles, variam de uma espécie para a outra. As células do corpo de um chimpanzé, por exemplo, possuem 48 cromossomos, as do corpo humano, 46 cromossomos, as do cão, 78 cromossomos e as do feijão 22.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col s12 m4 grid-item" id = "Biologiaclose">
+                <div class="card">
+                    <div class="card-image waves-effect waves-block waves-light">
+                        <img src="img/Anatomia_Humana.jpg" >
+                    </div>
+                    <div class="card-content">
+                        <span class="card-title activator grey-text text-darken-4">Anatomia<i class="material-icons right">more_vert</i></span>
+                        <p><a href="#" class ="waves-effect btn-floating red lighten-1"><i class="material-icons left">edit</i>Editar Card</a></p>
+                    </div>
+                    <div class="card-reveal">
+                        <span class="card-title grey-text text-darken-4">Anatomia<i class="material-icons right">close</i></span>
+                        <p>Anatomia (do grego ἀνατέμνω anatemnō "cortar em partes") é o campo da biologia que estuda a organização estrutural dos seres vivos, incluindo os sistemas, órgãos e tecidos que os constituem, a aparência e posição das várias partes, as substâncias de que são feitos, a sua localização e a sua relação com outras partes do corpo.[1] O termo anatomia é geralmente usado como sinónimo de anatomia humana. No entanto, as mesmas estruturas e tecidos podem ser observadas em praticamente todo o reino animal, pelo que o termo também se refere à anatomia dos outros animais, sendo neste caso por vezes usado o termo zootomia. Por outro lado, a estrutura e tecidos das plantas são de natureza diferente e são estudados pela anatomia vegetal.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col s12 m4 grid-item" id = "Matemáticaclose">
+                <div class="card">
+                    <div class="card-image waves-effect waves-block waves-light">
+                        <img src="img/derivadas.png" >
+                    </div>
+                    <div class="card-content">
+                        <span class="card-title activator grey-text text-darken-4">Derivadas<i class="material-icons right">more_vert</i></span>
+                        <p><a href="#" class ="waves-effect btn-floating red lighten-1"><i class="material-icons left">edit</i>Editar Card</a></p>
+                    </div>
+                    <div class="card-reveal">
+                        <span class="card-title grey-text text-darken-4">Derivadas<i class="material-icons right">close</i></span>
+                        <p>A derivada de uma função y = f(x) num ponto x = x0 , é igual ao valor da tangente trigonométrica do ângulo formado pela tangente geométrica à curva representativa de 
+                            y=f(x), no ponto x = x0, ou seja, a derivada é o coeficiente angular da reta tangente ao gráfico da função no ponto x0.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col s12 m4 grid-item" id = "Físicaclose">
+                <div class="card">
+                    <div class="card-image waves-effect waves-block waves-light">
+                        <img src="img/termo.jpg" >
+                    </div>
+                    <div class="card-content">
+                        <span class="card-title activator grey-text text-darken-4">Termodinâmica<i class="material-icons right">more_vert</i></span>
+                        <p><a href="#" class ="waves-effect btn-floating red lighten-1"><i class="material-icons left">edit</i>Editar Card</a></p>
+                    </div>
+                    <div class="card-reveal">
+                        <span class="card-title grey-text text-darken-4">Termodinâmica<i class="material-icons right">close</i></span>
+                        <p>A termodinâmica (do grego θερμη, therme, significa "calor" e δυναμις, dynamis, significa "potência") é o ramo da física que estuda as causas e os efeitos de mudanças na temperatura, pressão e volume - e de outras grandezas termodinâmicas fundamentais em casos menos gerais - em sistemas físicos em escala macroscópica. Grosso modo, calor significa "energia" em trânsito, e dinâmica se relaciona com "movimento". Por isso, em essência, a termodinâmica estuda o movimento da energia e como a energia cria movimento. Historicamente, a termodinâmica se desenvolveu pela necessidade de aumentar-se a eficiência das primeiras máquinas a vapor, sendo em essência uma ciência experimental, que diz respeito apenas a propriedades macroscópicas ou de grande escala da matéria e energia.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col s12 m4 grid-item" id = "Informáticaclose">
+                <div class="card">
+                    <div class="card-image waves-effect waves-block waves-light">
+                        <img src="img/teoriaCom.jpg" >
+                    </div>
+                    <div class="card-content">
+                        <span class="card-title activator grey-text text-darken-4">Teoria da Computação<i class="material-icons right">more_vert</i></span>
+                        <p><a href="#" class ="waves-effect btn-floating red lighten-1"><i class="material-icons left">edit</i>Editar Card</a></p>
+                    </div>
+                    <div class="card-reveal">
+                        <span class="card-title grey-text text-darken-4">Teoria da Computação<i class="material-icons right">close</i></span>
+                        <p>A teoria da computação é um subcampo da ciência da computação e matemática que busca determinar quais problemas podem ser computados em um dado modelo de computação. A computação pode ser definida como a solução de um problema ou, formalmente, o cálculo de uma função por meio de um algoritmo. Apesar de intuitivo na história humana, o conceito de execução de uma tarefa com passos finitos a fim de se obter um resultado, ou seja um algoritmo, não possuia uma definição formal até a conceituação do modelo de Máquina Universal de Turing.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer class="page-footer  yellow darken-2">
+        <div class="container">
+            <div class="row">
+                <div class="col l6 s12">
+                    <p class="grey-text text-lighten-3">Mateus Lins Aceto</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+</template>
+<template name = "newCard">
+    <header>
+        <!-- Componente do Menu, tanto do normal como do Mobile....-->
+        <nav>
+            <div class="nav-wrapper  red lighten-1">
+                <a href="#!" class="brand-logo"><img src="img/logo.png" class="logo-type"></a>
+                <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+                <ul class="right hide-on-med-and-down">
+                    <li><a href="/">Home</a></li>
+                    <li class="active"><a href="/newCard">Novo Card</a></li>
+                    <li><a href="/about">Sobre</a></li>
+                    <li>
+                        <a href="#modal1" class="waves-effect waves-light btn-floating user-photo-type" id="user"><img src="img/user.jpg" class="user-photo-type"></a>
+                    </li>
+                </ul>
+                <ul class="side-nav" id="mobile-demo">
+                    <li>
+                        <div class="userView">
+                            <div class="background">
+                                <img src="img/wallpaper.jpg" class="user-background">
+                            </div>
+                            <a href="#!user"><img class="circle user-photo-nav-type" src="img/user.jpg"></a>
+                            <a href="#!name"><span class="white-text name">Nicolas Gandalf</span></a>
+                            <a href="#!email"><span class="white-text email">nicolas_gandalf@gmail.com</span></a>
+                        </div>
+                    </li>
+                    <li><a href="/" class="waves-effect waves-yellow">Home</a></li>
+                    <li class="active"><a href="/newCard" class="waves-effect waves-yellow">Novo Card</a></li>
+                    <li><a href="/about" class="waves-effect waves-yellow">Sobre</a></li>
+                </ul>
+            </div>
+        </nav>
+        <!-- Modal Structure -->
+        <div id="modal1" class="modal">
+            <div class="modal-content">
+                <h4>Bem vindo Nicolas Gandalf!</h4>
+                <p>nicolas_gandalf@gmail.com</p>
+                <div class="chip">
+                    Você tem novas tarefas para hoje
+                    <i class="close material-icons">close</i>
+                </div>
+                <div class="chip">
+                    Você tem novas mensagens
+                    <i class="close material-icons">close</i>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <a href="#!" class="modal-action modal-close waves-effect waves-yellow btn-flat">Fechar</a>
+                <a href="#!" class="waves-effect waves-yellow btn yellow darken-2">Perfil</a>
+            </div>
+        </div>
+        <!-- Tap Target Structure -->
+        <div class="tap-target yellow darken-2" data-activates="user">
+            <div class="tap-target-content">
+                <h5>Você tem <span class="new badge red darken-3">4</span> novas notificações!</h5>
+                <p>Click na foto do seu usuário para abri-las</p>
+            </div>
+        </div>
+    </header>
+    <main>
+        <div class="row" style="margin-top:7px">
+            <div class="col s12 m12">
+                <div class="card yellow darken-2">
+                    <div class="card-content white-text">
+                        <span class="card-title center ">Cadastrar Card de estudos</span>
+                        <div class="card-panel">
+                            <div class="row">
+                                <form action="#">
+                                    <div class="input-field col s12">
+                                        <div class="file-field input-field">
+                                            <div class="btn">
+                                                <span>Imagem</span>
+                                                <input type="file">
+                                            </div>
+                                            <div class="file-path-wrapper">
+                                                <input class="file-path validate grey-text text-darken-" type="text">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                                <form class="col s12">
+                                    <div class="input-field col s12">
+                                        <i class="material-icons prefix grey-text text-darken-2">title</i>
+                                        <input id="icon_telephone" type="text" class="validate grey-text text-darken-2">
+                                        <label for="icon_telephone">Título do Card</label>
+                                    </div>
+                                    <div class="input-field col s12">
+                                        <i class="material-icons prefix grey-text text-darken-2">mode_edit</i>
+                                        <textarea id="textarea1" class="materialize-textarea"></textarea>
+                                        <label for="textarea1">Informações</label>
+                                    </div>
+                                    <div class="input-field col s12">
+                                        <i class="material-icons prefix grey-text text-darken-2">mode_edit</i>
+                                        <textarea id="textarea1" class="materialize-textarea"></textarea>
+                                        <label for="textarea1">Descrição do Card</label>
+                                    </div>
+                                </form>
+                                <form action="#">
+                                    <div class="input-field col s12">
+                                        <h5 class ="grey-text text-darken-2">Matéria</h5>
+                                        <p>
+                                            <input class="with-gap" name="groupSub" type="radio" id="matSel" checked />
+                                            <label for="matSel">Matemática</label>
+                                        </p>
+                                        <p>
+                                            <input class="with-gap" name="groupSub" type="radio" id="infoSel"  />
+                                            <label for="infoSel">Informática</label>
+                                        </p>
+                                        <p>
+                                            <input class="with-gap" name="groupSub" type="radio" id="fisSel"  />
+                                            <label for="fisSel">Física</label>
+                                        </p>
+                                        <p>
+                                            <input class="with-gap" name="groupSub" type="radio" id="bioSel"  />
+                                            <label for="bioSel">Biologia</label>
+                                        </p>
+                                        <p>
+                                            <input class="with-gap" name="groupSub" type="radio" id="quimSel"  />
+                                            <label for="quimSel">Química</label>
+                                        </p>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-action">
+                        <a class="waves-effect waves-light btn red darken-1 mobilebtn"><i class="material-icons left">cloud</i>Salvar</a>
+                        <a class="waves-effect waves-light btn red darken-1 mobilebtn"><i class="material-icons left">delete</i>Cancelar</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer class="page-footer  yellow darken-2">
+        <div class="container">
+            <div class="row">
+                <div class="col l6 s12">
+                    <p class="grey-text text-lighten-3">Mateus Lins Aceto</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+</template>
+<template name = "about">
+    <header>
+        <!-- Componente do Menu, tanto do normal como do Mobile....-->
+        <nav>
+            <div class="nav-wrapper  red lighten-1">
+                <a href="#!" class="brand-logo"><img src="img/logo.png" class="logo-type"></a>
+                <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+                <ul class="right hide-on-med-and-down">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/newCard">Novo Card</a></li>
+                    <li class="active"><a href="/about">Sobre</a></li>
+                    <li>
+                        <a href="#modal1" class="waves-effect waves-light btn-floating user-photo-type" id="user"><img src="img/user.jpg" class="user-photo-type"></a>
+                    </li>
+                </ul>
+                <ul class="side-nav" id="mobile-demo">
+                    <li>
+                        <div class="userView">
+                            <div class="background">
+                                <img src="img/wallpaper.jpg" class="user-background">
+                            </div>
+                            <a href="#!user"><img class="circle user-photo-nav-type" src="img/user.jpg"></a>
+                            <a href="#!name"><span class="white-text name">Nicolas Gandalf</span></a>
+                            <a href="#!email"><span class="white-text email">nicolas_gandalf@gmail.com</span></a>
+                        </div>
+                    </li>
+                    <li><a href="/" class="waves-effect waves-yellow">Home</a></li>
+                    <li><a href="/newCard" class="waves-effect waves-yellow">Novo Card</a></li>
+                    <li class="active"><a href="/about" class="waves-effect waves-yellow">Sobre</a></li>
+                </ul>
+            </div>
+        </nav>
+        <!-- Modal Structure -->
+        <div id="modal1" class="modal">
+            <div class="modal-content">
+                <h4>Bem vindo Nicolas Gandalf!</h4>
+                <p>nicolas_gandalf@gmail.com</p>
+                <div class="chip">
+                    Você tem novas tarefas para hoje
+                    <i class="close material-icons">close</i>
+                </div>
+                <div class="chip">
+                    Você tem novas mensagens
+                    <i class="close material-icons">close</i>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <a href="#!" class="modal-action modal-close waves-effect waves-yellow btn-flat">Fechar</a>
+                <a href="#!" class="waves-effect waves-yellow btn yellow darken-2">Perfil</a>
+            </div>
+        </div>
+        <!-- Tap Target Structure -->
+        <div class="tap-target yellow darken-2" data-activates="user">
+            <div class="tap-target-content">
+                <h5>Você tem <span class="new badge red darken-3">4</span> novas notificações!</h5>
+                <p>Click na foto do seu usuário para abri-las</p>
+            </div>
+        </div>
+    </header>
+    <main>
+        <div class="section white">
+            <div class="row container">
+                <h2 class="header">Study Life</h2>
+                <p class="grey-text text-darken-3 lighten-3">Study Live é um site focado na organização das tarefas e matérias, para um melhor desempenho, aqui você pode organizar os conteúdos aprendidos e ter uma experiencia de estudo muito mais agradável e eficaz.</p>
+            </div>
+        </div>
+        <div class="parallax-container">
+            <div class="parallax"><img src="img/back1.jpg"></div>
+        </div>
+        <div class="section white">
+            <div class="row container">
+                <h2 class="header">Como usar?</h2>
+                <p class="grey-text text-darken-3 lighten-3"> <img src="img/howUSE.png" style="width:100%; max-width:900px"></p>
+            </div>
+        </div>
+        <div class="parallax-container">
+            <div class="parallax"><img src="img/back1.jpg"></div>
+        </div>
+    </main>
+    <footer class="page-footer  yellow darken-2">
+        <div class="container">
+            <div class="row">
+                <div class="col l6 s12">
+                    <p class="grey-text text-lighten-3">Mateus Lins Aceto</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+</template>
+<template name = "login">
+    <header>
+        <!-- Componente do Menu, tanto do normal como do Mobile....-->
+        <nav>
+            <div class="nav-wrapper  red lighten-1">
+                <a href="#!" class="brand-logo center"><img src="img/logo.png" class="logo-type"></a>                
+            </div>
+        </nav>
+    </header>
+    <main>
+        <div class="row loginCard">
+            <div class="col s12 m12">
+                <div class="card-panel  grey lighten-5">
+                    <img src="img/user.png" class="user-img">
+                    <div class="row">
+                        <form class="col s12 login">
+                            <div class="input-field col s12">
+                                <i class="material-icons prefix grey-text text-darken-2">person_pin</i>
+                                <input id="loginEmail" type="text" class="validate grey-text text-darken-2">
+                                <label for="icon_telephone">Email</label>
+                            </div>
+                            <div class="input-field col s12">
+                                <i class="material-icons prefix grey-text text-darken-2">lock_outline</i>
+                                <input id="loginPass" type="password" class="validate grey-text text-darken-2">
+                                <label for="icon_telephone">Senha</label>
+                            </div>
+                            <a class="waves-effect waves-light btn btnMax red darken-3" id="loginSubmit"><i class="material-icons left">perm_identity</i>login</a>
+							<a class="waves-effect waves-light btn btnMax yellow darken-2" id="register" href="/register" style="margin-top:10px"><i class="material-icons left">perm_identity</i>Criar Conta</a>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer class="page-footer  yellow darken-2">
+        <div class="container">
+            <div class="row">
+                <div class="col l6 s12">
+                    <p class="grey-text text-lighten-3">Mateus Lins Aceto</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+</template>
+<template name = "register">
+    <header>
+        <!-- Componente do Menu, tanto do normal como do Mobile....-->
+        <nav>
+            <div class="nav-wrapper  red lighten-1">
+                <a href="#!" class="brand-logo center"><img src="img/logo.png" class="logo-type"></a>                
+            </div>
+        </nav>
+    </header>
+    <main>
+        <div class="row loginCard">
+            <div class="col s12 m12">
+                <div class="card-panel  grey lighten-5">
+                    <img src="img/user.png" class="user-img">
+                    <div class="row">
+                        <form class="col s12 register">
+                            <div class="input-field col s12">
+                                <i class="material-icons prefix grey-text text-darken-2">person_pin</i>
+                                <input id="registerNome" type="text" class="validate grey-text text-darken-2">
+                                <label for="icon_telephone">Nome</label>
+                            </div>
+                            
+							<div class="input-field col s12">
+                                <i class="material-icons prefix grey-text text-darken-2">person_pin</i>
+                                <input id="registerEmail" type="email" class="validate grey-text text-darken-2">
+                                <label for="icon_telephone">Email</label>
+                            </div>
+                            <div class="input-field col s12">
+                                <i class="material-icons prefix grey-text text-darken-2">lock_outline</i>
+                                <input id="registerPass" type="password" class="validate grey-text text-darken-2">
+                                <label for="icon_telephone">Senha</label>
+                            </div>
+                            <a class="waves-effect waves-light btn btnMax yellow darken-2" id="registerSubmit"><i class="material-icons left">perm_identity</i>Registrar-se</a>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer class="page-footer  yellow darken-2">
+        <div class="container">
+            <div class="row">
+                <div class="col l6 s12">
+                    <p class="grey-text text-lighten-3">Mateus Lins Aceto</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+</template>
+
+<template name = "perfil">
+    <header>
+        <!-- Componente do Menu, tanto do normal como do Mobile....-->
+        <div class="navbar-fixed">
+            <nav>
+                <div class="nav-wrapper  red lighten-1">
+                    <a href="#!" class="brand-logo"><img src="img/logo.png" class="logo-type"></a>
+                    <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+                    <ul class="right hide-on-med-and-down">
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/newCard">Novo Card</a></li>
+                        <li class="active"><a href="/about">Sobre</a></li>
+                        <li>
+                            <a href="#modal1" class="waves-effect waves-light btn-floating user-photo-type" id="user"><img src="img/user.jpg" class="user-photo-type"></a>
+                        </li>
+                    </ul>
+                    <ul class="side-nav" id="mobile-demo">
+                        <li>
+                            <div class="userView">
+                                <div class="background">
+                                    <img src="img/wallpaper.jpg" class="user-background">
+                                </div>
+                                <a href="#!user"><img class="circle user-photo-nav-type" src="img/user.jpg"></a>
+                                <a href="#!name"><span class="white-text name">Nicolas Gandalf</span></a>
+                                <a href="#!email"><span class="white-text email">nicolas_gandalf@gmail.com</span></a>
+                            </div>
+                        </li>
+                        <li><a href="/" class="waves-effect waves-yellow">Home</a></li>
+                        <li><a href="/newCard" class="waves-effect waves-yellow">Novo Card</a></li>
+                        <li class="active"><a href="/about" class="waves-effect waves-yellow">Sobre</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        <!-- Modal Structure -->
+        <div id="modal1" class="modal">
+            <div class="modal-content">
+                <h4>Bem vindo Nicolas Gandalf!</h4>
+                <p>nicolas_gandalf@gmail.com</p>
+                <div class="chip">
+                    Você tem novas tarefas para hoje
+                    <i class="close material-icons">close</i>
+                </div>
+                <div class="chip">
+                    Você tem novas mensagens
+                    <i class="close material-icons">close</i>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <a href="#!" class="modal-action modal-close waves-effect waves-yellow btn-flat">Fechar</a>
+                <a href="#!" class="waves-effect waves-yellow btn yellow darken-2">Perfil</a>
+            </div>
+        </div>
+        <!-- Tap Target Structure -->
+        <div class="tap-target yellow darken-2" data-activates="user">
+            <div class="tap-target-content">
+                <h5>Você tem <span class="new badge red darken-3">4</span> novas notificações!</h5>
+                <p>Click na foto do seu usuário para abri-las</p>
+            </div>
+        </div>
+    </header>
+    <main>
+        <div class="row">
+            <div class="col s12 m12">
+                <div class = "iris">
+                    <div class = "card transparent white-text" style="bottom:-350px; margin-left: 10px; max-width: 250px" >
+                        <table>
+                            <tr>
+                                <td><img class="circle user-photo-nav-type" src="img/user.jpg"></td>
+                                <td>
+                                    <h5>Nicolas Gandalf</h5>
+                                    <p>nicolas_gandalf@gmail.com</p>
+                                </td>
+                            </tr>
+                        </table>
+                        <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">edit</i></a>					
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s12 m6">
+                <div class="card transparent">
+                    <ul id="tabs-swipe-demo" class="tabs amber grey lighten-4" >
+                        <li class="tab col s6"><a class="active" href="#tab-1">Sobre</a></li>
+                        <li class="tab col s6"><a href="#tab-2">Amigos</a></li>
+                    </ul>
+                    <div id="tab-1" class="col s12 white">qwqwqw</div>
+                    <div id="tab-2" class="col s12 white">
+                        <div class="row">
+                            <div class="col s12 m6">
+                                <div class="card">
+                                    <div class="card-image">
+                                        <img src="img/cris.jpg">
+                                        <span class="card-title">Cris</span>
+                                        <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">visibility</i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col s12 m6">
+                                <div class="card">
+                                    <div class="card-image">
+                                        <img src="img/julius.jpg">
+                                        <span class="card-title">Julius</span>
+                                        <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">visibility</i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col s12 m6">
+                                <div class="card">
+                                    <div class="card-image">
+                                        <img src="img/yudi.jpg">
+                                        <span class="card-title">Yudi</span>
+                                        <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">visibility</i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col s12 m6">
+                            <div class="card">
+                                <div class="card-image">
+                                    <img src="img/macgyver.jpg">
+                                    <span class="card-title">MacGyver</span>
+                                    <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">visibility</i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</template>
+<template name = "footer1">
+    <footer class="page-footer  yellow darken-2">
+        <div class="container">
+            <div class="row">
+                <div class="col l6 s12">
+                    <p class="grey-text text-lighten-3">Mateus Lins Aceto</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+</template>
